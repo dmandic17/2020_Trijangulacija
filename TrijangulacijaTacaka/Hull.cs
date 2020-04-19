@@ -16,6 +16,18 @@ namespace TrijangulacijaTacaka
         PointF rightMostPoint;
         Dictionary<PointF, int> pointIndexDict;
 
+
+        public Hull()
+        {
+        }
+
+
+        public Hull(List<PointF> points)
+        {
+            this.pointIndexDict = new Dictionary<PointF, int>();
+            this.points = points;
+        }
+
         public PointF getNext(PointF point)
         {
             int currentIndex = pointIndexDict[point];
@@ -59,20 +71,12 @@ namespace TrijangulacijaTacaka
             }
         }
 
-        public Hull()
-        {
-        }
 
         public List<PointF> getPoints()
         {
             return this.points;
         }
 
-        public Hull(List<PointF> points)
-        {
-            this.pointIndexDict = new Dictionary<PointF, int>();
-            this.points = points;
-        }
 
         public void setRightMost(PointF point)
         {
@@ -85,13 +89,29 @@ namespace TrijangulacijaTacaka
         }
 
         public PointF getRightMostPoint()
-        {  
-            return new PointF();
+        {  //O(n)
+            PointF rightMost = new PointF();
+            foreach (PointF point in this.points)
+            {
+                if (point.X > rightMost.X)
+                {
+                    rightMost = point;
+                }
+            }
+            return rightMost;
         }
 
         public int getRightMostIndex()
-        { 
-            return 0;
+        { //O(n)
+            int max = 0;
+            for (int i = 0; i < points.Count; i++)
+            {
+                if (points[i].X > points[max].X)
+                {
+                    max = i;
+                }
+            }
+            return max;
         }
         public String printPointInfo(int index)
         {
@@ -99,8 +119,16 @@ namespace TrijangulacijaTacaka
         }
 
         public int getLeftMostIndex()
-        {  
-            return 0;
+        {  //O(n)
+            int max = 0;
+            for (int i = 0; i < points.Count; i++)
+            {
+                if (points[i].X < points[max].X)
+                {
+                    max = i;
+                }
+            }
+            return max;
         }
     }
 }
