@@ -16,5 +16,30 @@ namespace TrijangulacijaTacaka
         {
             InitializeComponent();
         }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+             WindowState = FormWindowState.Maximized;
+        }
+
+        private void btGenerateNext_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btFileInput_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btSaveToFile_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+
+        }
     }
 }
