@@ -160,7 +160,88 @@ namespace TrijangulacijaTacaka
                 resultPoints.Add(left.getPoints()[i]);
             }
 
+            //add convex hull to the solution (because it is in the triangulation)
+            for (int i = 0; i < resultPoints.Count - 1; i++)
+            {
+                solution.Add(new Tuple<PointF, PointF>(resultPoints[i], resultPoints[i + 1]));
+
+            }
+            solution.Add(new Tuple<PointF, PointF>(resultPoints[0], resultPoints[resultPoints.Count - 1]));
+
+            //add triangulation between hulls to the solution:
+
+            //first, take left and right inner points from two polygons
+            //left inner is for left polygon, right for right
+            List<PointF> leftInner = new List<PointF>();
+            List<PointF> rightInner = new List<PointF>();
+            if (upperLeft == lowerLeft)
+            {
+                leftInner.Add(left.getPoints()[upperLeft]);
+                int i = left.getNextIndex(upperLeft);
+                for (; i != upperLeft; i = left.getNextIndex(i))
+                    leftInner.Add(left.getPoints()[i]);
+                leftInner.Add(left.getPoints()[upperLeft]);
+            }
+            else
+            {
+                for (int i = upperLeft; i != lowerLeft; i = left.getNextIndex(i))
+                {
+                    leftInner.Add(left.getPoints()[i]);
+                }
+                leftInner.Add(left.getPoints()[lowerLeft]);
+            }
+            for (int i = upperRight; i >= 0; i--)
+            {
+                rightInner.Add(right.getPoints()[i]);
+            }
+            for (int i = right.getPoints().Count - 1; i >= lowerRight; i--)
+            {
+                rightInner.Add(right.getPoints()[i]);
+            }
+
+            //than call the triangulate mehtod: O(n) as everything
+            triangulate(leftInner, rightInner);
+
+
             return new Hull(resultPoints);
+        }
+        
+        private bool can(List<PointF> left, List<PointF> right, int l, int r, int k)
+        { //O(1)
+            if (k != -1 && l + 1 < left.Count && orientation(left[l], right[r], left[l + 1]) > 0)
+                return false;
+            if (r - 1 >= 0 && orientation(left[l], right[r], right[r - 1]) < 0)
+                return false;
+            return true;
+        }
+        
+        private void triangulate(List<PointF> left, List<PointF> right)
+        { //O(n)
+            int currL = 0;
+            int currR = 0;
+            int k = 1;
+            int p = 1;
+            while (currL < left.Count)
+            {
+                if (p == 1 && currL + 1 < left.Count && left[currL].X > left[currL + 1].X)
+                {
+                    //Console.WriteLine("Evo: " + currL);  //debug output
+                    k *= -1;
+                    p = 0;
+                }
+                while (currR < right.Count && can(left, right, currL, currR, k))
+                {
+                    solution.Add(new Tuple<PointF, PointF>(left[currL], right[currR]));
+                    currR++;
+                    //Console.WriteLine("moze " + currR);  //debug output
+                }
+                currL++;
+                if (currL < left.Count)
+                {
+                    solution.Add(new Tuple<PointF, PointF>(left[currL], right[currR - 1]));
+                }
+            }
+
         }
 
         //triangle orientation method:

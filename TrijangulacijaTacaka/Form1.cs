@@ -75,13 +75,16 @@ namespace TrijangulacijaTacaka
                 }
             }
 
-            Hull conv = new SolverTriangulation().GetHull(allPoints, 0, "");
-            List<PointF> l = conv.getPoints();
-            for (int i = 0; i < l.Count-1; i++)
+            List<Tuple<PointF, PointF>> sol = new SolverTriangulation().solveProblem(allPoints);
+            for (int i = 0; i < sol.Count; i++)
             {
-                g.DrawLine(Pens.Blue, l[i].X, l[i].Y, l[i + 1].X, l[i + 1].Y);
+                Tuple<PointF, PointF> curr =sol[i];
+                Pen pen = new Pen(Color.Purple, 2);
+                g.DrawLine(pen, curr.Item1.X, curr.Item1.Y, curr.Item2.X, curr.Item2.Y);
+                g.FillEllipse(Brushes.Black, curr.Item1.X - radius, curr.Item1.Y - radius, 2 * radius, 2 * radius);
+                g.FillEllipse(Brushes.Black, curr.Item2.X - radius, curr.Item2.Y - radius, 2 * radius, 2 * radius);
+                cnt++;
             }
-            g.DrawLine(Pens.Blue, l[0].X, l[0].Y, l[l.Count-1].X, l[l.Count-1].Y);
 
         }
 
