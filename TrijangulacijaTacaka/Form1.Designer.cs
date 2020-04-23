@@ -77,7 +77,7 @@
             this.btFileInput.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.btFileInput.Font = new System.Drawing.Font("Microsoft YaHei UI", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btFileInput.ForeColor = System.Drawing.Color.DarkSlateGray;
-            this.btFileInput.Location = new System.Drawing.Point(564, 12);
+            this.btFileInput.Location = new System.Drawing.Point(578, 12);
             this.btFileInput.Name = "btFileInput";
             this.btFileInput.Size = new System.Drawing.Size(87, 40);
             this.btFileInput.TabIndex = 2;
@@ -90,7 +90,7 @@
             this.btSaveToFile.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.btSaveToFile.Font = new System.Drawing.Font("Microsoft YaHei UI", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btSaveToFile.ForeColor = System.Drawing.Color.DarkSlateGray;
-            this.btSaveToFile.Location = new System.Drawing.Point(666, 12);
+            this.btSaveToFile.Location = new System.Drawing.Point(681, 12);
             this.btSaveToFile.Name = "btSaveToFile";
             this.btSaveToFile.Size = new System.Drawing.Size(81, 40);
             this.btSaveToFile.TabIndex = 3;
@@ -133,7 +133,7 @@
             this.bt_triangulation.ForeColor = System.Drawing.Color.DarkSlateGray;
             this.bt_triangulation.Location = new System.Drawing.Point(444, 12);
             this.bt_triangulation.Name = "bt_triangulation";
-            this.bt_triangulation.Size = new System.Drawing.Size(96, 40);
+            this.bt_triangulation.Size = new System.Drawing.Size(114, 40);
             this.bt_triangulation.TabIndex = 7;
             this.bt_triangulation.Text = "Triang";
             this.bt_triangulation.UseVisualStyleBackColor = true;
