@@ -74,6 +74,15 @@ namespace TrijangulacijaTacaka
                     g.FillEllipse(Brushes.Black, allPoints.ElementAt(i).X - radius, allPoints.ElementAt(i).Y - radius, 2 * radius, 2 * radius);
                 }
             }
+
+            Hull conv = new SolverTriangulation().GetHull(allPoints, 0, "");
+            List<PointF> l = conv.getPoints();
+            for (int i = 0; i < l.Count-1; i++)
+            {
+                g.DrawLine(Pens.Blue, l[i].X, l[i].Y, l[i + 1].X, l[i + 1].Y);
+            }
+            g.DrawLine(Pens.Blue, l[0].X, l[0].Y, l[l.Count-1].X, l[l.Count-1].Y);
+
         }
 
         private void btFileInput_Click(object sender, EventArgs e)

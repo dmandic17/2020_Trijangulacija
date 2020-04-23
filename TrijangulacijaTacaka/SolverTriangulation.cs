@@ -45,8 +45,122 @@ namespace TrijangulacijaTacaka
         //glavna metoda je spajanje:
         public Hull merge(Hull left, Hull right)
         {
-            return null;  // implementation missing here
-            //**************************************************************************************************************
+            int rightMost = left.getRightMostIndex();
+            int leftMost = right.getLeftMostIndex();
+
+            int currentLeftIndex = rightMost;
+            int currentRightIndex = leftMost;
+
+            int upperLeft = -1;
+            int upperRight = -1;
+            int lowerLeft = -1;
+            int lowerRight = -1;
+
+            bool leftIndexChanged = false;
+            bool rightIndexChanged = false;
+            bool firstRight = true;
+            bool firstLeft = true;
+
+            //get upper common tangent
+            while (leftIndexChanged || rightIndexChanged || firstLeft || firstRight)
+            {
+                if (firstRight || leftIndexChanged)
+                {
+                    firstRight = false;
+                    upperRight = getRightUpper(left, right, currentLeftIndex, currentRightIndex);
+                    if (upperRight == currentRightIndex)
+                    {
+                        leftIndexChanged = false;
+                        rightIndexChanged = false;
+                    }
+                    else
+                    {
+                        rightIndexChanged = true;
+                        currentRightIndex = upperRight;
+                    }
+                }
+                if (firstLeft || rightIndexChanged)
+                {
+                    firstLeft = false;
+                    upperLeft = getLeftUpper(left, right, currentLeftIndex, currentRightIndex);
+                    if (upperLeft == currentLeftIndex)
+                    {
+                        leftIndexChanged = false;
+                        rightIndexChanged = false;
+                    }
+                    else
+                    {
+                        leftIndexChanged = true;
+                        currentLeftIndex = upperLeft;
+                    }
+                }
+            }
+
+            //get lower common tangentt
+            currentLeftIndex = rightMost;
+            currentRightIndex = leftMost;
+
+            leftIndexChanged = false;
+            rightIndexChanged = false;
+            //iterate through at least once
+            firstRight = true;
+            firstLeft = true;
+            while (leftIndexChanged || rightIndexChanged || firstLeft || firstRight)
+            {
+                if (firstLeft || rightIndexChanged)
+                {
+                    firstLeft = false;
+                    lowerLeft = getLeftLower(left, right, currentLeftIndex, currentRightIndex);
+                    if (lowerLeft == currentLeftIndex)
+                    {
+                        leftIndexChanged = false;
+                        rightIndexChanged = false;
+                    }
+                    else
+                    {
+                        leftIndexChanged = true;
+                        currentLeftIndex = lowerLeft;
+                    }
+                }
+
+                if (firstRight || leftIndexChanged)
+                {
+                    firstRight = false;
+                    lowerRight = getRightLower(left, right, currentLeftIndex, currentRightIndex);
+                    if (lowerRight == currentRightIndex)
+                    {
+                        leftIndexChanged = false;
+                        rightIndexChanged = false;
+                    }
+                    else
+                    {
+                        rightIndexChanged = true;
+                        currentRightIndex = lowerRight;
+                    }
+                }
+            }
+
+            //join points
+            List<PointF> resultPoints = new List<PointF>();
+            //add up to (and including) upperLeft
+            for (int i = 0; i <= upperLeft; i++)
+            {
+                resultPoints.Add(left.getPoints()[i]);
+            }
+            //add up to lowerRight
+            for (int i = upperRight; i != lowerRight; i = right.getNextIndex(i))
+            {
+                resultPoints.Add(right.getPoints()[i]);
+            }
+            //add lowerRight
+            resultPoints.Add(right.getPoints()[lowerRight]);
+            //add from lowerLeft to beginning
+            for (int i = lowerLeft; i != 0; i = left.getNextIndex(i))
+            {
+                resultPoints.Add(left.getPoints()[i]);
+            }
+
+            return new Hull(resultPoints);
         }
 
         //triangle orientation method:
