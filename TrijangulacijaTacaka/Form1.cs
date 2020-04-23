@@ -22,6 +22,7 @@ namespace TrijangulacijaTacaka
         private int NUM_OF_POINTS = 0;
         private List<PointF> allPoints = new List<PointF>();
         private List<Tuple<PointF, PointF>> solution;
+        bool clickEnabled = true;
         
         private void generatePoints()
         {
@@ -48,6 +49,7 @@ namespace TrijangulacijaTacaka
         private void btGenerateNext_Click(object sender, EventArgs e)
         {
             timer1.Stop();
+            clickEnabled = true;
             pictureBox1.Refresh();
             cnt = 0;
             NUM_OF_POINTS = 20;
@@ -74,18 +76,7 @@ namespace TrijangulacijaTacaka
                     g.FillEllipse(Brushes.Black, allPoints.ElementAt(i).X - radius, allPoints.ElementAt(i).Y - radius, 2 * radius, 2 * radius);
                 }
             }
-
-            List<Tuple<PointF, PointF>> sol = new SolverTriangulation().solveProblem(allPoints);
-            for (int i = 0; i < sol.Count; i++)
-            {
-                Tuple<PointF, PointF> curr =sol[i];
-                Pen pen = new Pen(Color.Purple, 2);
-                g.DrawLine(pen, curr.Item1.X, curr.Item1.Y, curr.Item2.X, curr.Item2.Y);
-                g.FillEllipse(Brushes.Black, curr.Item1.X - radius, curr.Item1.Y - radius, 2 * radius, 2 * radius);
-                g.FillEllipse(Brushes.Black, curr.Item2.X - radius, curr.Item2.Y - radius, 2 * radius, 2 * radius);
-                cnt++;
-            }
-
+            
         }
 
         private void btFileInput_Click(object sender, EventArgs e)
@@ -100,20 +91,43 @@ namespace TrijangulacijaTacaka
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-
+            if (cnt < solution.Count)
+            {
+                int radius = 5;
+                Graphics g = pictureBox1.CreateGraphics();
+                Tuple<PointF, PointF> curr = solution[cnt];
+                Pen pen = new Pen(Color.Purple, 2);
+                g.DrawLine(pen, curr.Item1.X, curr.Item1.Y, curr.Item2.X, curr.Item2.Y);
+                g.FillEllipse(Brushes.Black, curr.Item1.X - radius, curr.Item1.Y - radius, 2 * radius, 2 * radius);
+                g.FillEllipse(Brushes.Black, curr.Item2.X - radius, curr.Item2.Y - radius, 2 * radius, 2 * radius);
+                cnt++;
+            }
+            else
+            {
+                clickEnabled = true;
+                timer1.Stop();
+            }
         }
 
         
 
         private void pictureBox1_MouseClick(object sender, MouseEventArgs e)
         {
-            Graphics g = pictureBox1.CreateGraphics();
-            g.FillEllipse(Brushes.Black, e.X - 5, e.Y - 5, 10, 10);
-            allPoints.Add(new PointF(e.X, e.Y));
-            NUM_OF_POINTS++;
+            if (clickEnabled)
+            {
+                Graphics g = pictureBox1.CreateGraphics();
+                g.FillEllipse(Brushes.Black, e.X - 5, e.Y - 5, 10, 10);
+                allPoints.Add(new PointF(e.X, e.Y));
+                NUM_OF_POINTS++;
+            }
 
         }
-        
-       
+
+        private void bt_triangulation_Click(object sender, EventArgs e)
+        {
+            solution = new SolverTriangulation().solveProblem(allPoints);
+            clickEnabled = false;
+            timer1.Start();
+        }
     }
 }

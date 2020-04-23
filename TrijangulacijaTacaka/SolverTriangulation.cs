@@ -336,6 +336,7 @@ namespace TrijangulacijaTacaka
         //resenje:
         public List<Tuple<PointF, PointF>> solveProblem(List<PointF> points)
         {
+            points = points.OrderBy(p => p.X).ThenBy(p => p.Y).ToList();
             solution = new List<Tuple<PointF, PointF>>();
             Hull convex = GetHull(points, 0, "");
             return solution;

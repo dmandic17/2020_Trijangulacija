@@ -137,6 +137,7 @@
             this.bt_triangulation.TabIndex = 7;
             this.bt_triangulation.Text = "Triang";
             this.bt_triangulation.UseVisualStyleBackColor = true;
+            this.bt_triangulation.Click += new System.EventHandler(this.bt_triangulation_Click);
             // 
             // Form1
             // 
