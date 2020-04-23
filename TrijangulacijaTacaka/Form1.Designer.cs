@@ -39,6 +39,7 @@
             this.bt_prost = new System.Windows.Forms.Button();
             this.bt_hull = new System.Windows.Forms.Button();
             this.bt_triangulation = new System.Windows.Forms.Button();
+            this.bt_clear = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -77,7 +78,7 @@
             this.btFileInput.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.btFileInput.Font = new System.Drawing.Font("Microsoft YaHei UI", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btFileInput.ForeColor = System.Drawing.Color.DarkSlateGray;
-            this.btFileInput.Location = new System.Drawing.Point(578, 12);
+            this.btFileInput.Location = new System.Drawing.Point(588, 12);
             this.btFileInput.Name = "btFileInput";
             this.btFileInput.Size = new System.Drawing.Size(87, 40);
             this.btFileInput.TabIndex = 2;
@@ -107,9 +108,9 @@
             this.bt_prost.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.bt_prost.Font = new System.Drawing.Font("Microsoft YaHei UI", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bt_prost.ForeColor = System.Drawing.Color.DarkSlateGray;
-            this.bt_prost.Location = new System.Drawing.Point(205, 12);
+            this.bt_prost.Location = new System.Drawing.Point(242, 12);
             this.bt_prost.Name = "bt_prost";
-            this.bt_prost.Size = new System.Drawing.Size(108, 40);
+            this.bt_prost.Size = new System.Drawing.Size(118, 40);
             this.bt_prost.TabIndex = 5;
             this.bt_prost.Text = "Poligon";
             this.bt_prost.UseVisualStyleBackColor = true;
@@ -119,7 +120,7 @@
             this.bt_hull.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.bt_hull.Font = new System.Drawing.Font("Microsoft YaHei UI", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bt_hull.ForeColor = System.Drawing.Color.DarkSlateGray;
-            this.bt_hull.Location = new System.Drawing.Point(332, 12);
+            this.bt_hull.Location = new System.Drawing.Point(366, 12);
             this.bt_hull.Name = "bt_hull";
             this.bt_hull.Size = new System.Drawing.Size(96, 40);
             this.bt_hull.TabIndex = 6;
@@ -131,7 +132,7 @@
             this.bt_triangulation.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.bt_triangulation.Font = new System.Drawing.Font("Microsoft YaHei UI", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bt_triangulation.ForeColor = System.Drawing.Color.DarkSlateGray;
-            this.bt_triangulation.Location = new System.Drawing.Point(444, 12);
+            this.bt_triangulation.Location = new System.Drawing.Point(468, 12);
             this.bt_triangulation.Name = "bt_triangulation";
             this.bt_triangulation.Size = new System.Drawing.Size(114, 40);
             this.bt_triangulation.TabIndex = 7;
@@ -139,12 +140,26 @@
             this.bt_triangulation.UseVisualStyleBackColor = true;
             this.bt_triangulation.Click += new System.EventHandler(this.bt_triangulation_Click);
             // 
+            // bt_clear
+            // 
+            this.bt_clear.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.bt_clear.Font = new System.Drawing.Font("Microsoft YaHei UI", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bt_clear.ForeColor = System.Drawing.Color.DarkSlateGray;
+            this.bt_clear.Location = new System.Drawing.Point(143, 12);
+            this.bt_clear.Name = "bt_clear";
+            this.bt_clear.Size = new System.Drawing.Size(93, 40);
+            this.bt_clear.TabIndex = 8;
+            this.bt_clear.Text = "Clear";
+            this.bt_clear.UseVisualStyleBackColor = true;
+            this.bt_clear.Click += new System.EventHandler(this.bt_clear_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.bt_clear);
             this.Controls.Add(this.bt_triangulation);
             this.Controls.Add(this.bt_hull);
             this.Controls.Add(this.bt_prost);
@@ -173,6 +188,7 @@
         private System.Windows.Forms.Button bt_prost;
         private System.Windows.Forms.Button bt_hull;
         private System.Windows.Forms.Button bt_triangulation;
+        private System.Windows.Forms.Button bt_clear;
     }
 }
 

@@ -119,6 +119,7 @@ namespace TrijangulacijaTacaka
                 g.FillEllipse(Brushes.Black, e.X - 5, e.Y - 5, 10, 10);
                 allPoints.Add(new PointF(e.X, e.Y));
                 NUM_OF_POINTS++;
+                Console.WriteLine(allPoints.Count);
             }
 
         }
@@ -127,7 +128,23 @@ namespace TrijangulacijaTacaka
         {
             solution = new SolverTriangulation().solveProblem(allPoints);
             clickEnabled = false;
+            cnt = 0;
+            pictureBox1.Refresh();
+            int radius = 5;
+            for (int i = 0; i < NUM_OF_POINTS; i++)
+            {
+                g.FillEllipse(Brushes.Black, allPoints.ElementAt(i).X - radius, allPoints.ElementAt(i).Y - radius, 2 * radius, 2 * radius);
+            }
             timer1.Start();
+        }
+
+        private void bt_clear_Click(object sender, EventArgs e)
+        {
+            timer1.Stop();
+            clickEnabled = true;
+            allPoints = new List<PointF>();
+            NUM_OF_POINTS = 0;
+            pictureBox1.Refresh();
         }
     }
 }
