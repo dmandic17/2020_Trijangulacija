@@ -114,6 +114,7 @@
             this.bt_prost.TabIndex = 5;
             this.bt_prost.Text = "Poligon";
             this.bt_prost.UseVisualStyleBackColor = true;
+            this.bt_prost.Click += new System.EventHandler(this.bt_prost_Click);
             // 
             // bt_hull
             // 

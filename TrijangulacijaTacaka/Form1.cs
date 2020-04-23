@@ -94,7 +94,7 @@ namespace TrijangulacijaTacaka
             if (cnt < solution.Count)
             {
                 int radius = 5;
-                Graphics g = pictureBox1.CreateGraphics();
+               // Graphics g = pictureBox1.CreateGraphics();
                 Tuple<PointF, PointF> curr = solution[cnt];
                 Pen pen = new Pen(Color.Purple, 2);
                 g.DrawLine(pen, curr.Item1.X, curr.Item1.Y, curr.Item2.X, curr.Item2.Y);
@@ -145,6 +145,19 @@ namespace TrijangulacijaTacaka
             allPoints = new List<PointF>();
             NUM_OF_POINTS = 0;
             pictureBox1.Refresh();
+        }
+
+        private void bt_prost_Click(object sender, EventArgs e)
+        {
+            TrijangulacijaTacaka.GA.prost(NUM_OF_POINTS, allPoints);
+            Pen olovka = new Pen(Color.Red, 3);
+            
+            for (int i = 0; i < NUM_OF_POINTS - 1; i++)
+            {
+                g.DrawLine(olovka, allPoints[i], allPoints[i + 1]) ;
+                System.Threading.Thread.Sleep(500);
+            }
+            g.DrawLine(olovka, allPoints[0], allPoints[NUM_OF_POINTS - 1]);
         }
     }
 }

@@ -131,4 +131,46 @@ namespace TrijangulacijaTacaka
             return max;
         }
     }
+
+    public class GA {
+        static public void prost(int brojTacaka,List<PointF> niz)
+        {
+            int index = 0;
+            for (int i = 1; i < brojTacaka; i++)
+            {
+                if (niz[index].X > niz[i].X)
+                {
+                    index = i;
+                }
+                else if (niz[index].X == niz[i].X && niz[index].Y > niz[i].Y)
+                {
+                    index = i;
+                }
+            }//najmanji x, a od takvih najmanji y
+
+            PointF tmp = new PointF();
+            tmp = niz[index];
+            if (index > 0)
+            {
+                niz[index] = niz[0];
+            }
+
+            niz.RemoveAt(0);
+
+
+
+            niz.Sort((p1, p2) => {
+
+
+
+                int a = (((p1.Y - tmp.Y) / (p1.X - tmp.X))).CompareTo((((p2.Y - tmp.Y) / (p2.X - tmp.X))));
+                return a == 0 ? ((p1.Y - tmp.Y) * (p1.Y - tmp.Y) + (p1.X - tmp.X) * (p1.X - tmp.X)).CompareTo((p2.Y - tmp.Y) * (p2.Y - tmp.Y) + (p2.X - tmp.X) * (p2.X - tmp.X)) : a;
+
+            });
+            niz.Insert(0, tmp);
+        }//sortira niz u redom cvorove za prost mnogougao
+
+
+    }
+
 }
