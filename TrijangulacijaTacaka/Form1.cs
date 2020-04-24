@@ -23,13 +23,17 @@ namespace TrijangulacijaTacaka
         private List<PointF> allPoints = new List<PointF>();
         private List<Tuple<PointF, PointF>> solution;
         bool clickEnabled = true;
-        
+        Pen olovka = new Pen(Color.Red, 3);
+        PointF[] konv;
+        int j,timer;
+
         private void generatePoints()
         {
             Random r = new Random();
             int width = pictureBox1.Width;
             int height = pictureBox1.Height;
             allPoints = new List<PointF>();
+            
             for (int i = 0; i < NUM_OF_POINTS; i++)
             {
                 int x = r.Next(0, width);
@@ -91,25 +95,69 @@ namespace TrijangulacijaTacaka
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            if (cnt < solution.Count)
+            if (timer == 1)
             {
-                int radius = 5;
-               // Graphics g = pictureBox1.CreateGraphics();
-                Tuple<PointF, PointF> curr = solution[cnt];
-                Pen pen = new Pen(Color.Purple, 2);
-                g.DrawLine(pen, curr.Item1.X, curr.Item1.Y, curr.Item2.X, curr.Item2.Y);
-                g.FillEllipse(Brushes.Black, curr.Item1.X - radius, curr.Item1.Y - radius, 2 * radius, 2 * radius);
-                g.FillEllipse(Brushes.Black, curr.Item2.X - radius, curr.Item2.Y - radius, 2 * radius, 2 * radius);
-                cnt++;
-            }
-            else
+
+
+                if (cnt < solution.Count)
+                {
+                    int radius = 5;
+                    // Graphics g = pictureBox1.CreateGraphics();
+                    Tuple<PointF, PointF> curr = solution[cnt];
+                    Pen pen = new Pen(Color.Purple, 2);
+                    g.DrawLine(pen, curr.Item1.X, curr.Item1.Y, curr.Item2.X, curr.Item2.Y);
+                    g.FillEllipse(Brushes.Black, curr.Item1.X - radius, curr.Item1.Y - radius, 2 * radius, 2 * radius);
+                    g.FillEllipse(Brushes.Black, curr.Item2.X - radius, curr.Item2.Y - radius, 2 * radius, 2 * radius);
+                    cnt++;
+                }
+                else
+                {
+                    clickEnabled = true;
+                    timer1.Stop();
+                }
+            } //triangulacija
+            else if (timer == 2)
             {
-                clickEnabled = true;
-                timer1.Stop();
+                if (cnt < NUM_OF_POINTS - 1)
+                {
+                    g.DrawLine(olovka, allPoints[cnt], allPoints[cnt + 1]);
+                    cnt++;
+                }
+                else
+                {
+                    g.DrawLine(olovka, allPoints[0], allPoints[NUM_OF_POINTS - 1]);
+                    timer1.Stop();
+                    cnt = 0;
+                    clickEnabled = true;
+                }
+            }//prost
+            else if (timer == 3) {
+                if (cnt < NUM_OF_POINTS)
+                {
+
+                    while ((konv[j].X - konv[j - 1].X) * (allPoints[cnt].Y - konv[j - 1].Y) - (konv[j].Y - konv[j - 1].Y) * (allPoints[cnt].X - konv[j - 1].X) < 0)
+                    {
+                        olovka.Color = Color.Blue;
+                        g.DrawLine(olovka, konv[j], konv[--j]);
+                    }
+                    olovka.Color = Color.Red;
+                    g.DrawLine(olovka, konv[j], allPoints[cnt]);
+                    j++;
+                    konv[j] = allPoints[cnt];
+                    cnt++;
+                }
+                else
+                {
+                    cnt = 0;
+                    clickEnabled = true;
+                    g.DrawLine(olovka, konv[0], konv[j]);
+                    timer1.Stop();
+
+                }
             }
+            
         }
 
-        
 
         private void pictureBox1_MouseClick(object sender, MouseEventArgs e)
         {
@@ -122,42 +170,78 @@ namespace TrijangulacijaTacaka
                 Console.WriteLine(allPoints.Count);
             }
 
-        }
+        } //ucituje tacke klikom na pictureBox
 
         private void bt_triangulation_Click(object sender, EventArgs e)
         {
-            solution = new SolverTriangulation().solveProblem(allPoints);
-            clickEnabled = false;
-            cnt = 0;
+            if (NUM_OF_POINTS > 0)
+            {
+                solution = new SolverTriangulation().solveProblem(allPoints);
+                clickEnabled = false;
+                cnt = 0;
+                ocisti();
+                timer = 1;
+                timer1.Start();
+            }
+        }
+       
+        private void ocisti() {
             pictureBox1.Refresh();
             int radius = 5;
             for (int i = 0; i < NUM_OF_POINTS; i++)
             {
                 g.FillEllipse(Brushes.Black, allPoints.ElementAt(i).X - radius, allPoints.ElementAt(i).Y - radius, 2 * radius, 2 * radius);
             }
-            timer1.Start();
-        }
+        } //brise linije a ostavlja tacke
+        
+        
+
 
         private void bt_clear_Click(object sender, EventArgs e)
         {
             timer1.Stop();
             clickEnabled = true;
-            allPoints = new List<PointF>();
+            allPoints.Clear();
             NUM_OF_POINTS = 0;
             pictureBox1.Refresh();
-        }
+        }//brise sve i prazni listu
 
         private void bt_prost_Click(object sender, EventArgs e)
         {
-            TrijangulacijaTacaka.GA.prost(NUM_OF_POINTS, allPoints);
-            Pen olovka = new Pen(Color.Red, 3);
-            
-            for (int i = 0; i < NUM_OF_POINTS - 1; i++)
+            if (NUM_OF_POINTS > 0)
             {
-                g.DrawLine(olovka, allPoints[i], allPoints[i + 1]) ;
-                System.Threading.Thread.Sleep(500);
+                clickEnabled = false;
+                ocisti();
+                TrijangulacijaTacaka.GA.prost(NUM_OF_POINTS, allPoints);
+                cnt = 0;
+                timer = 2;
+                timer1.Start();
             }
-            g.DrawLine(olovka, allPoints[0], allPoints[NUM_OF_POINTS - 1]);
         }
+        
+        
+
+        private void bt_hull_Click(object sender, EventArgs e)
+        {
+            if (NUM_OF_POINTS > 0)
+            {
+                ocisti();
+                TrijangulacijaTacaka.GA.prost(NUM_OF_POINTS, allPoints);
+                clickEnabled = false;
+                konv = new PointF[NUM_OF_POINTS];
+                konv[0] = allPoints[0];
+                konv[1] = allPoints[1];
+                konv[2] = allPoints[2];
+                j = 2;
+                cnt = 3;
+                g.DrawLine(olovka, konv[0], konv[1]);
+                g.DrawLine(olovka, konv[1], konv[2]);
+                timer = 3;
+                timer1.Start();                
+            }
+        
+    }//konveksni omotac
+
+       
     }
 }

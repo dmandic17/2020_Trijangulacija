@@ -51,7 +51,7 @@
             this.pictureBox1.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.pictureBox1.Location = new System.Drawing.Point(34, 58);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(728, 346);
+            this.pictureBox1.Size = new System.Drawing.Size(755, 346);
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             this.pictureBox1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseClick);
@@ -61,7 +61,7 @@
             this.btGenerateNext.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.btGenerateNext.Font = new System.Drawing.Font("Microsoft YaHei UI", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btGenerateNext.ForeColor = System.Drawing.Color.DarkSlateGray;
-            this.btGenerateNext.Location = new System.Drawing.Point(28, 12);
+            this.btGenerateNext.Location = new System.Drawing.Point(41, 12);
             this.btGenerateNext.Name = "btGenerateNext";
             this.btGenerateNext.Size = new System.Drawing.Size(96, 40);
             this.btGenerateNext.TabIndex = 1;
@@ -78,7 +78,7 @@
             this.btFileInput.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.btFileInput.Font = new System.Drawing.Font("Microsoft YaHei UI", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btFileInput.ForeColor = System.Drawing.Color.DarkSlateGray;
-            this.btFileInput.Location = new System.Drawing.Point(588, 12);
+            this.btFileInput.Location = new System.Drawing.Point(601, 12);
             this.btFileInput.Name = "btFileInput";
             this.btFileInput.Size = new System.Drawing.Size(87, 40);
             this.btFileInput.TabIndex = 2;
@@ -91,7 +91,7 @@
             this.btSaveToFile.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.btSaveToFile.Font = new System.Drawing.Font("Microsoft YaHei UI", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btSaveToFile.ForeColor = System.Drawing.Color.DarkSlateGray;
-            this.btSaveToFile.Location = new System.Drawing.Point(681, 12);
+            this.btSaveToFile.Location = new System.Drawing.Point(694, 12);
             this.btSaveToFile.Name = "btSaveToFile";
             this.btSaveToFile.Size = new System.Drawing.Size(81, 40);
             this.btSaveToFile.TabIndex = 3;
@@ -108,7 +108,7 @@
             this.bt_prost.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.bt_prost.Font = new System.Drawing.Font("Microsoft YaHei UI", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bt_prost.ForeColor = System.Drawing.Color.DarkSlateGray;
-            this.bt_prost.Location = new System.Drawing.Point(242, 12);
+            this.bt_prost.Location = new System.Drawing.Point(255, 12);
             this.bt_prost.Name = "bt_prost";
             this.bt_prost.Size = new System.Drawing.Size(118, 40);
             this.bt_prost.TabIndex = 5;
@@ -121,19 +121,20 @@
             this.bt_hull.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.bt_hull.Font = new System.Drawing.Font("Microsoft YaHei UI", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bt_hull.ForeColor = System.Drawing.Color.DarkSlateGray;
-            this.bt_hull.Location = new System.Drawing.Point(366, 12);
+            this.bt_hull.Location = new System.Drawing.Point(379, 12);
             this.bt_hull.Name = "bt_hull";
             this.bt_hull.Size = new System.Drawing.Size(96, 40);
             this.bt_hull.TabIndex = 6;
             this.bt_hull.Text = "Hull";
             this.bt_hull.UseVisualStyleBackColor = true;
+            this.bt_hull.Click += new System.EventHandler(this.bt_hull_Click);
             // 
             // bt_triangulation
             // 
             this.bt_triangulation.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.bt_triangulation.Font = new System.Drawing.Font("Microsoft YaHei UI", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bt_triangulation.ForeColor = System.Drawing.Color.DarkSlateGray;
-            this.bt_triangulation.Location = new System.Drawing.Point(468, 12);
+            this.bt_triangulation.Location = new System.Drawing.Point(481, 12);
             this.bt_triangulation.Name = "bt_triangulation";
             this.bt_triangulation.Size = new System.Drawing.Size(114, 40);
             this.bt_triangulation.TabIndex = 7;
@@ -146,7 +147,7 @@
             this.bt_clear.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.bt_clear.Font = new System.Drawing.Font("Microsoft YaHei UI", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bt_clear.ForeColor = System.Drawing.Color.DarkSlateGray;
-            this.bt_clear.Location = new System.Drawing.Point(143, 12);
+            this.bt_clear.Location = new System.Drawing.Point(156, 12);
             this.bt_clear.Name = "bt_clear";
             this.bt_clear.Size = new System.Drawing.Size(93, 40);
             this.bt_clear.TabIndex = 8;
@@ -159,7 +160,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(827, 450);
             this.Controls.Add(this.bt_clear);
             this.Controls.Add(this.bt_triangulation);
             this.Controls.Add(this.bt_hull);
