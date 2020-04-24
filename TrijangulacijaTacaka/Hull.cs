@@ -154,19 +154,12 @@ namespace TrijangulacijaTacaka
             {
                 niz[index] = niz[0];
             }
-
             niz.RemoveAt(0);
 
-
-
             niz.Sort((p1, p2) => {
-
-
-
                 int a = (((p1.Y - tmp.Y) / (p1.X - tmp.X))).CompareTo((((p2.Y - tmp.Y) / (p2.X - tmp.X))));
                 return a == 0 ? ((p1.Y - tmp.Y) * (p1.Y - tmp.Y) + (p1.X - tmp.X) * (p1.X - tmp.X)).CompareTo((p2.Y - tmp.Y) * (p2.Y - tmp.Y) + (p2.X - tmp.X) * (p2.X - tmp.X)) : a;
-
-            });
+            });//sortira listu tkd je poredak za prost mnogougao
             niz.Insert(0, tmp);
         }//sortira niz u redom cvorove za prost mnogougao
 
