@@ -32,7 +32,6 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btGenerateNext = new System.Windows.Forms.Button();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.btFileInput = new System.Windows.Forms.Button();
             this.btSaveToFile = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
@@ -72,19 +71,6 @@
             // timer1
             // 
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
-            // 
-            // btFileInput
-            // 
-            this.btFileInput.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.btFileInput.Font = new System.Drawing.Font("Microsoft YaHei UI", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btFileInput.ForeColor = System.Drawing.Color.DarkSlateGray;
-            this.btFileInput.Location = new System.Drawing.Point(601, 12);
-            this.btFileInput.Name = "btFileInput";
-            this.btFileInput.Size = new System.Drawing.Size(87, 40);
-            this.btFileInput.TabIndex = 2;
-            this.btFileInput.Text = "File";
-            this.btFileInput.UseVisualStyleBackColor = true;
-            this.btFileInput.Click += new System.EventHandler(this.btFileInput_Click);
             // 
             // btSaveToFile
             // 
@@ -166,7 +152,6 @@
             this.Controls.Add(this.bt_hull);
             this.Controls.Add(this.bt_prost);
             this.Controls.Add(this.btSaveToFile);
-            this.Controls.Add(this.btFileInput);
             this.Controls.Add(this.btGenerateNext);
             this.Controls.Add(this.pictureBox1);
             this.Name = "Form1";
@@ -183,7 +168,6 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button btGenerateNext;
         private System.Windows.Forms.Timer timer1;
-        private System.Windows.Forms.Button btFileInput;
         private System.Windows.Forms.Button btSaveToFile;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
