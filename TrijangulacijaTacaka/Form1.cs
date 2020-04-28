@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
+using System.Security;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -26,6 +28,7 @@ namespace TrijangulacijaTacaka
         Pen olovka = new Pen(Color.Red, 3);
         PointF[] konv;
         int j,timer;
+        int state = 0;
 
         private void generatePoints()
         {
@@ -52,6 +55,7 @@ namespace TrijangulacijaTacaka
         int cnt = 0;
         private void btGenerateNext_Click(object sender, EventArgs e)
         {
+            state = 0;
             timer1.Stop();
             clickEnabled = true;
             pictureBox1.Refresh();
@@ -82,14 +86,73 @@ namespace TrijangulacijaTacaka
             }
             
         }
-
-        private void btFileInput_Click(object sender, EventArgs e)
-        {
-
-        }
+        
 
         private void btSaveToFile_Click(object sender, EventArgs e)
         {
+
+            if (state != 0)
+            {
+                if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+                {
+                    try
+                    {
+
+                        var sw = new StreamWriter(saveFileDialog1.FileName);
+                        MessageBox.Show(saveFileDialog1.FileName);
+                        cnt = 0;
+                        switch (state)
+                        {
+                            case 1:  //prost
+                                {
+                                    sw.WriteLine(state);
+                                    sw.WriteLine(NUM_OF_POINTS);
+                                    for (int i = 0; i < NUM_OF_POINTS; i++)
+                                    {
+                                        sw.WriteLine(allPoints[i].X + " " + allPoints[i].Y);
+
+                                    }
+                                }
+                                break;
+                            case 2:  //konv
+                                {
+                                    sw.WriteLine(state);
+                                    sw.WriteLine(NUM_OF_POINTS);
+                                    for (int i = 0; i < NUM_OF_POINTS; i++)
+                                    {
+                                        sw.WriteLine(allPoints[i].X + " " + allPoints[i].Y);
+
+                                    }
+                                }
+                                break;
+                            case 3: //triang
+                                {
+                                    sw.WriteLine(state);
+                                    sw.WriteLine(NUM_OF_POINTS);
+                                    for (int i = 0; i < NUM_OF_POINTS; i++)
+                                    {
+                                        sw.WriteLine(allPoints[i].X + " " + allPoints[i].Y);
+
+                                    }
+                                    sw.WriteLine(solution.Count);
+                                    for (int i = 0; i < solution.Count; i++)
+                                    {
+                                        sw.WriteLine("(" + solution[i].Item1.X + "," + solution[i].Item1.Y + ") " + "(" + solution[i].Item2.X + "," + solution[i].Item2.Y + ")");
+                                    }
+                                }
+                                break;
+                        }
+                        sw.Close();
+
+                    }
+                    catch (SecurityException ex)
+                    {
+                        MessageBox.Show($"Security error.\n\nError message: {ex.Message}\n\n" +
+                        $"Details:\n\n{ex.StackTrace}");
+                    }
+                }
+            }
+            else MessageBox.Show("Niste pokrenuli nijedan algoritam, nema sta da se sacuva.");
 
         }
 
@@ -97,8 +160,6 @@ namespace TrijangulacijaTacaka
         {
             if (timer == 1)
             {
-
-
                 if (cnt < solution.Count)
                 {
                     int radius = 5;
@@ -181,6 +242,7 @@ namespace TrijangulacijaTacaka
                 cnt = 0;
                 ocisti();
                 timer = 1;
+                state = 3;
                 timer1.Start();
             }
         }
@@ -199,6 +261,7 @@ namespace TrijangulacijaTacaka
 
         private void bt_clear_Click(object sender, EventArgs e)
         {
+            state = 0;
             timer1.Stop();
             clickEnabled = true;
             allPoints.Clear();
@@ -215,6 +278,7 @@ namespace TrijangulacijaTacaka
                 TrijangulacijaTacaka.GA.prost(NUM_OF_POINTS, allPoints);
                 cnt = 0;
                 timer = 2;
+                state = 1;
                 timer1.Start();
             }
         }
@@ -234,6 +298,7 @@ namespace TrijangulacijaTacaka
                 konv[2] = allPoints[2];
                 j = 2;
                 cnt = 3;
+                state = 2;
                 g.DrawLine(olovka, konv[0], konv[1]);
                 g.DrawLine(olovka, konv[1], konv[2]);
                 timer = 3;
