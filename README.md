@@ -26,8 +26,8 @@
 - Izvrsni fajl se moze preuzeti [ovde](https://github.com/matf-pp/2020_Trijangulacija/releases/download/v1/TrijangulacijaTacaka.exe), i napravljen je za operativni sistem Windows, dovoljno je skinuti i otvoriti .exe fajl. 
 
 - Članovi tima:
-  - Dejana Mandić 8/2017, [dmandic17](https://github.com/dmandic17)
-  - Milan Kocić   58/2017,  [kocic98](https://github.com/kocic98)
+  - Dejana Mandić 8/2017, mr17008@alas.matf.bg.ac.rs
+  - Milan Kocić   58/2017,  mr17058@alas.matf.bg.ac.rs
 
 
 
