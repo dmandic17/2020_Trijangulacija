@@ -98,7 +98,7 @@
             this.bt_prost.Name = "bt_prost";
             this.bt_prost.Size = new System.Drawing.Size(118, 40);
             this.bt_prost.TabIndex = 5;
-            this.bt_prost.Text = "Poligon";
+            this.bt_prost.Text = "Polygon";
             this.bt_prost.UseVisualStyleBackColor = true;
             this.bt_prost.Click += new System.EventHandler(this.bt_prost_Click);
             // 
@@ -155,8 +155,9 @@
             this.Controls.Add(this.btGenerateNext);
             this.Controls.Add(this.pictureBox1);
             this.Name = "Form1";
+            this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Form1";
+            this.Text = "PP Projekat";
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
