@@ -12,7 +12,7 @@ Algoritam polygon za početak nalazi tačku A sa najmanjom X koordinatom, ukolik
     
   
  <img align="left" width="570" height="450" src="Slike/konveksni_omotac.jpeg">
- Algoritam Hull prvo sortira tačke tako da one obrazuju prost mnogougao koristeći algoritam Polygon, složenost O(nlogn). Pošto su tacke sortirane u smeru kretanja kazaljki na satu, krecući se po ivicama prostog mnogougla sa desne strane nam se nalazi unutrašnjost mnogougla. Tu činjenicu koristi ovaj algoritam, on se "kreće"po ivicama sve dok u temenu "skrene" desno i ta temena ubacuje u konveksni omotac, ukoliko naidje na mesto gde je potrebno "skrenuti" levo za neko teme, on brise tacke iz konveksnog omotača sve dok se ne pojavi ona iz koje se skrece desno za to teme, složenost O(n) jer najvise jednom se svako teme ubaci i izbaci iz konveksnog omotača. Ukupno O(n+nlogn)=O(nlogn). <br/>
+ Algoritam Hull prvo sortira tačke tako da one obrazuju prost mnogougao koristeći algoritam Polygon, složenost O(nlogn). Pošto su tacke sortirane u smeru kretanja kazaljki na satu, krecući se po ivicama prostog mnogougla sa desne strane nam se nalazi unutrašnjost mnogougla. Tu činjenicu koristi ovaj algoritam, on se "kreće"po ivicama sve dok u temenu "skrene" desno i ta temena ubacuje u konveksni omotac, ukoliko naidje na mesto gde je potrebno "skrenuti" levo za neko teme, on brise tacke iz konveksnog omotača sve dok se ne pojavi ona iz koje se skrece desno za to teme, složenost O(n) jer najvise jednom se svako teme ubaci i izbaci iz konveksnog omotača. Ukupno O(n+nlogn)=O(nlogn). <br/><br/><br/>
   
    
    
